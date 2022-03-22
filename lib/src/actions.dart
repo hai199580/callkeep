@@ -103,14 +103,21 @@ class CallKeepPushKitToken extends EventType {
 }
 
 class CallKeepPushKitReceivedNotification extends EventType {
-  CallKeepPushKitReceivedNotification();
-  CallKeepPushKitReceivedNotification.fromMap(Map<dynamic, dynamic> arguments)
-      : callId = arguments['callId'] as String,
-        serial = arguments['serial'] as int,
-        uuid = arguments['uuid'] as String,
-        callStatus = arguments['callStatus'] as String;
+
+  CallKeepPushKitReceivedNotification(
+      this.callId, this.serial, this.callStatus, this.uuid, this.arguments);
+
+  Map<dynamic, dynamic>? arguments;
   String? callId;
   int? serial;
   String? callStatus;
   String? uuid;
+
+  CallKeepPushKitReceivedNotification.fromMap(Map<dynamic, dynamic> arguments) {
+    callId = arguments['callId'] as String;
+    serial = arguments['serial'] as int;
+    uuid = arguments['uuid'] as String;
+    callStatus = arguments['callStatus'] as String;
+    this.arguments = arguments;
+  }
 }
